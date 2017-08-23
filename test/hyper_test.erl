@@ -395,26 +395,6 @@ gen_values(Size) ->
 %%gen_values(Size) ->
 %%    [non_empty(binary()) | gen_values(Size-1)].
 
-gen_filters(Values) ->
-    ?LET(NumFilters, choose(2, 10),
-         gen_filters(Values, length(Values) div NumFilters, NumFilters)).
-
-gen_filters(Values, Size, 0) ->
-    [Values];
-gen_filters(Values, Size, NumFilters) ->
-    case split(Size, Values) of
-        {[], _} ->
-            [];
-        {Filter, Rest} ->
-            [Filter | gen_filters(Rest, Size, NumFilters-1)]
-    end.
-
-
-split(N, []) -> {[], []};
-split(N, L) when length(L) < N -> {L, []};
-split(N, L) -> lists:split(N, L).
-
-
 gen_getset(P) ->
     ?SIZED(Size, gen_getset(Size, P)).
 
