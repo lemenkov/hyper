@@ -1,5 +1,4 @@
 -module(hyper_bisect).
--include_lib("eunit/include/eunit.hrl").
 -behaviour(hyper_register).
 
 -export([new/1,
@@ -229,6 +228,9 @@ do_decode_registers(<<Value:?VALUE_SIZE, Rest/binary>>, I) ->
 %% TESTS
 %%
 
+-ifdef(EUNIT).
+-include_lib("eunit/include/eunit.hrl").
+
 bisect2dense_test() ->
     P = 4,
     M = 16, % pow(2, P)
@@ -248,3 +250,5 @@ bisect2dense_test() ->
                  0, 0, 0, 5>>,
     ?assertEqual(M, size(Expected)),
     ?assertEqual(Expected, Dense).
+
+-endif.

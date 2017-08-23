@@ -5,7 +5,6 @@
 %% inserts to perform in the future.
 
 -module(hyper_binary).
--include_lib("eunit/include/eunit.hrl").
 -behaviour(hyper_register).
 %%-compile(native).
 
@@ -275,6 +274,8 @@ merge_buf(B, [{Index, Value} | Rest], PrevIndex, Acc) ->
 %% TESTS
 %%
 
+-ifdef(EUNIT).
+-include_lib("eunit/include/eunit.hrl").
 
 merge_test() ->
     P = 4, M = m(P),
@@ -316,3 +317,5 @@ serialize_test() ->
 
 max_registers_test() ->
     ?assertEqual([{3, 3}], max_registers([{3, 1}, {3, 2}, {3, 3}])).
+
+-endif.
