@@ -135,7 +135,6 @@ backend_t() ->
     ?assertEqual(Array, hyper:from_json(hyper:to_json(Array), hyper_array)),
     ?assertEqual(Bisect, hyper:from_json(hyper:to_json(Array), hyper_bisect)),
     ?assertEqual(Binary, hyper:from_json(hyper:to_json(Binary), hyper_binary)),
-    ?assertEqual(Carray, hyper:from_json(hyper:to_json(Carray), hyper_carray)),
 
 
     ?assertEqual(hyper:to_json(Gb), hyper:to_json(Array)),
